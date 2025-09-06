@@ -7,14 +7,14 @@ import Img from '../pages/lg.png'
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { account, connectWallet, isConnecting, chainId, switchToSepolia, disconnectWallet } = useWallet();
+  const { account, connectWallet, isConnecting, chainId, switchToSonicTest, disconnectWallet } = useWallet();
   const location = useLocation();
 
   const handleConnectWallet = async () => {
     
     await connectWallet();
-    if (chainId !== 11155111) { // Sepolia chainId
-      await switchToSepolia();
+    if (chainId !== 14601) { 
+      await switchToSonicTest();
     }
 
   

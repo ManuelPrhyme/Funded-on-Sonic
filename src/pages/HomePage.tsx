@@ -63,7 +63,7 @@ const HomePage: React.FC = () => {
                 className="rounded-lg shadow-xl"
               />
               <div className="absolute -bottom-6 -left-6 bg-white rounded-lg shadow-lg p-4">
-                <p className="text-blue-600 font-bold text-xl">{totalRaised.toFixed(3)} ETH</p>
+                <p className="text-blue-600 font-bold text-xl">{totalRaised.toFixed(3)} S</p>
                 <p className="text-gray-600">Total Funds Raised</p>
               </div>
             </div>
@@ -80,7 +80,7 @@ const HomePage: React.FC = () => {
                 <DollarSign className="h-8 w-8 text-blue-600" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-gray-900">{totalRaised.toFixed(3)} ETH</p>
+                <p className="text-2xl font-bold text-gray-900">{totalRaised.toFixed(3)} S</p>
                 <p className="text-gray-600">Total Funded</p>
               </div>
             </div>

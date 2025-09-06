@@ -7,7 +7,7 @@ interface WalletContextType {
   disconnectWallet: () => void;
   isConnecting: boolean;
   chainId: number | null;
-  switchToSepolia: () => Promise<void>;
+  switchToSonicTest: () => Promise<void>;
 }
 
 const WalletContext = createContext<WalletContextType | undefined>(undefined);
@@ -41,24 +41,24 @@ export const WalletProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   };
 
-  const switchToSepolia = async () => {
+  const switchToSonicTest = async () => {
     if (!window.ethereum) return;
 
     try {
       await window.ethereum.request({
         method: 'wallet_switchEthereumChain',
-        params: [{ chainId: '0xaa36a7' }], // Sepolia chainId
+        params: [{ chainId: '0x3909' }], 
       });
     } catch (error: any) {
       if (error.code === 4902) {
         await window.ethereum.request({
           method: 'wallet_addEthereumChain',
           params: [{
-            chainId: '0xaa36a7',
-            chainName: 'Sepolia',
-            nativeCurrency: { name: 'ETH', symbol: 'ETH', decimals: 18 },
-            rpcUrls: ['https://sepolia.infura.io/v3/'],
-            blockExplorerUrls: ['https://sepolia.etherscan.io'],
+            chainId: '0x3909',
+            chainName: 'Sonic Testnet',
+            nativeCurrency: { name: 'S Token', symbol: 'S', decimals: 18 },
+            rpcUrls: ['https://rpc.testnet.soniclabs.com'],
+            blockExplorerUrls: ['https://testnet.sonicscan.org/'],
           }],
         });
       }
@@ -98,7 +98,7 @@ export const WalletProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       disconnectWallet,
       isConnecting,
       chainId,
-      switchToSepolia
+      switchToSonicTest
     }}>
       {children}
     </WalletContext.Provider>

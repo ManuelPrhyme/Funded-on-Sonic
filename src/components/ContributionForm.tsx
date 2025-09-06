@@ -39,9 +39,9 @@ const ContributionForm: React.FC<ContributionFormProps> = ({ campaignId, onSucce
       return;
     }
     
-    // Check minimum contribution (e.g., 0.001 ETH)
+    // Check minimum contribution (e.g., 0.001 S)
     if (amountValue < 0.001) {
-      setError('Minimum contribution is 0.001 ETH');
+      setError('Minimum contribution is 0.001 S');
       return;
     }
     
@@ -122,7 +122,7 @@ const ContributionForm: React.FC<ContributionFormProps> = ({ campaignId, onSucce
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-1">
-                Amount (ETH)
+                Amount (S)
               </label>
               <div className="relative rounded-md shadow-sm">
                 <input
@@ -139,7 +139,7 @@ const ContributionForm: React.FC<ContributionFormProps> = ({ campaignId, onSucce
                   onChange={(e) => setAmount(e.target.value)}
                 />
                 <div className="absolute inset-y-0 left-15 pl-15 flex items-center pointer-events-none">
-                  <span className="text-gray-500 sm:text-sm">ETH</span>
+                  <span className="text-gray-500 sm:text-sm">S</span>
                 </div>
               </div>
               {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
@@ -152,9 +152,9 @@ const ContributionForm: React.FC<ContributionFormProps> = ({ campaignId, onSucce
                 </p>
                 {amount && !isNaN(parseFloat(amount)) && parseFloat(amount) > 0 && (
                   <div className="text-xs text-blue-700">
-                    <p>Your contribution: {parseFloat(amount).toFixed(3)} ETH</p>
-                    <p>Platform fee (5%): {(parseFloat(amount) * 0.05).toFixed(3)} ETH</p>
-                    <p className="font-medium">Campaign receives: {(parseFloat(amount) * 0.95).toFixed(3)} ETH</p>
+                    <p>Your contribution: {parseFloat(amount).toFixed(3)} S</p>
+                    <p>Platform fee (5%): {(parseFloat(amount) * 0.05).toFixed(3)} S</p>
+                    <p className="font-medium">Campaign receives: {(parseFloat(amount) * 0.95).toFixed(3)} S</p>
                   </div>
                 )}
               </div>

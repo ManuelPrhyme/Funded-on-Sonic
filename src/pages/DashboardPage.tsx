@@ -123,7 +123,7 @@ const DashboardPage: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Total Raised</p>
-                  <p className="text-lg font-bold">{totalRaised.toFixed(3)} ETH</p>
+                  <p className="text-lg font-bold">{totalRaised.toFixed(3)} S</p>
                 </div>
               </div>
             </div>

@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
             <div className="flex items-center">
               {/* <Wallet className="h-8 w-8 text-blue-500" /> */}
               <img src={Img} className='h-[35px] w-auto' /> 
-              <span className="ml-2 text-xl font-bold">Funded</span>
+              <span className="ml-2 text-xl font-bold">Funded-On-Sonic</span>
             </div>
             <p className="mt-2 text-gray-400 text-sm">
               Empowering creators through decentralized crowdfunding. Our platform helps innovators raise funds and bring their ideas to life.
@@ -75,7 +75,7 @@ const Footer: React.FC = () => {
         
         <div className="mt-8 border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between">
           <p className="text-base text-gray-400 md:mt-0">
-            &copy; {new Date().getFullYear()} Funded. All rights reserved.
+            &copy; {new Date().getFullYear()} Funded-On-Sonic. All rights reserved.
           </p>
           <div className="mt-4 md:mt-0">
             <a href="#" className="text-sm text-gray-400 hover:text-white mr-4">Privacy Policy</a>

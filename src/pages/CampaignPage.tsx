@@ -103,10 +103,10 @@ const CampaignPage: React.FC = () => {
             
             <div className="mt-8">
               <p className="text-2xl font-bold text-gray-900">
-                {campaign.currentAmount.toFixed(3)} ETH
+                {campaign.currentAmount.toFixed(3)} S
               </p>
               <p className="text-sm text-gray-500">
-                raised of {campaign.goalAmount.toFixed(3)} ETH goal
+                raised of {campaign.goalAmount.toFixed(3)} S goal
               </p>
               
               <div className="mt-3 w-full bg-gray-200 rounded-full h-2.5">
@@ -236,7 +236,7 @@ const CampaignPage: React.FC = () => {
                               <span className="text-sm truncate" title={contributor.address}>
                                 {contributor.address.substr(0, 6)}...{contributor.address.substr(-4)}
                               </span>
-                              <span className="font-medium">{contributor.amount.toFixed(3)} ETH</span>
+                              <span className="font-medium">{contributor.amount.toFixed(3)} S</span>
                             </li>
                           ))}
                       </ul>

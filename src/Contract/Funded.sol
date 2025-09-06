@@ -7,7 +7,7 @@ contract funded {
     address payable immutable Proprietor;
 
     constructor(){
-        //Immutably designating the deployers address, and allowing for it to receive ETH from this contract
+        //Immutably designating the deployers address, and allowing for it to receive S from this contract
          Proprietor = payable(msg.sender);
     }
 
@@ -106,7 +106,7 @@ contract funded {
         string memory _category       
         
     ) external payable {
-        //The creator is required to make the very first contribution to their project with 0.0005 ETH, for the project to be registered
+        //The creator is required to make the very first contribution to their project with 0.0005 S, for the project to be registered
         //Just to express commitment (Elimination Criteria)
         require(msg.value == 5e15,"Registration failed");
 
@@ -218,7 +218,7 @@ contract funded {
             //Getting the net amount to send to a particular address
             uint netAmountToReimburse = grossAmountToReimburse - deduction;
 
-            //Sending ETH back to the contributor
+            //Sending S back to the contributor
             (bool sendStatus,) = addressToReimburse.call{value:netAmountToReimburse}("");
 
              //Adding 1% to the 'deployersRevenue', to unlock it for the Proprietor
@@ -251,7 +251,7 @@ contract funded {
         //Checking the owner has the right to withdraw the requested amount from the contract. If they dont, the transaction will revert
         require(_withdrawAmount <= deployerRevenue && deployerRevenue > 0,"Value out or range (0 or Greater than balance)");
         
-        //Sending ETH to proprirtor's address 
+        //Sending S to proprirtor's address 
         (bool sendStatus,) =  Proprietor.call{value: _withdrawAmount}("");
 
         //Updating deployer revenue balance on teh contract

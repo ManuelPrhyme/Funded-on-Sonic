@@ -33,8 +33,8 @@ const CampaignCard: React.FC<CampaignCardProps> = ({ campaign }) => {
         
         <div className="mb-3">
           <div className="flex justify-between text-sm mb-1">
-            <span className="font-medium text-gray-900">{campaign.currentAmount.toFixed(3)} ETH  </span>
-            <span className="text-gray-500">raised of {campaign.goalAmount.toFixed(3)} ETH</span>
+            <span className="font-medium text-gray-900">{campaign.currentAmount.toFixed(3)} S  </span>
+            <span className="text-gray-500">raised of {campaign.goalAmount.toFixed(3)} S</span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
             <div 
