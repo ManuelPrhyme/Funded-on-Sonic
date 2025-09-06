@@ -1,0 +1,22 @@
+
+{
+  "accountAssociation": {
+    "header": "eyJmaWQiOjEwODkwMDYsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHgzMDllQzA5NDdFNzdmQUVkM0M2OThBRDQzNDA1M0FhMUVhYjQ5MGI3In0",
+    "payload": "eyJkb21haW4iOiJmdW5kZWQtcHJvZC52ZXJjZWwuYXBwIn0",
+    "signature": "MHhiNTQyMTQ0YzM4ZjcwOTE5NjNlNDQwYjEzMjcxYmFjMzBhNDJkMTRjMGE1MDZiMjA1ZmMxYzI3NThlYTBjMDMzMDg2NGRmZDZmMThhZDMzZmI4MWNhYjA1MjEyNzFjYmNkNWQ5OWVlZmVlM2JjYjQxZWYxODQwNzU3MTMwZmQxNDFi"
+  },
+  "frame": {
+    "version": "1",
+    "name": "Funded",
+    "iconUrl": "https://res.cloudinary.com/dfxpx7go7/image/upload/c_pad,w_200,h_200,ar_1:1/v1756833760/Pree_sp0quv.png",
+    "homeUrl": "https://funded-prod.vercel.app",
+    "imageUrl": "https://res.cloudinary.com/dfxpx7go7/image/upload/b_rgb:FFFFFF/c_pad,w_3000,h_2000/v1756824155/Pree_jq8def.png",
+    "buttonTitle": "Get Funded",
+    "splashImageUrl": "https://res.cloudinary.com/dfxpx7go7/image/upload/c_pad,w_200,h_200,ar_1:1/v1756833760/Pree_sp0quv.png",
+    "splashBackgroundColor": "#0F0EDA",
+    "webhookUrl": "https://funded-prod.vercel.app/api/webhook"
+  },
+  "baseBuilder": {
+    "allowedAddresses": ["0xE6B3D8922203F1f9B69a8e56FF8e21bCdD483799"]
+  }
+}
