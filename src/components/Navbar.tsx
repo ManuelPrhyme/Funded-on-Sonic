@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
               <div className="h-8 w-8 text-blue-500">
               <img src={Img} alt="" />
               </div>
-              <span className="ml-2 text-xl font-bold text-gray-900">Funded</span>
+              <span className="ml-2 text-xl font-bold text-gray-900">Funded-On-Sonic</span>
             </Link>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
               <Link 

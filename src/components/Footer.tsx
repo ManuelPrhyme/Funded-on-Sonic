@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Wallet, Twitter, Facebook, Instagram, Mail } from 'lucide-react';
+import Img from "../pages/lg.png"
 
 const Footer: React.FC = () => {
   return (
@@ -9,7 +10,8 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1">
             <div className="flex items-center">
-              <Wallet className="h-8 w-8 text-blue-500" />
+              {/* <Wallet className="h-8 w-8 text-blue-500" /> */}
+              <img src={Img} className='h-[35px] w-auto' /> 
               <span className="ml-2 text-xl font-bold">Funded</span>
             </div>
             <p className="mt-2 text-gray-400 text-sm">
