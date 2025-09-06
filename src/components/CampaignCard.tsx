@@ -22,7 +22,7 @@ const CampaignCard: React.FC<CampaignCardProps> = ({ campaign }) => {
           alt={campaign.title} 
           className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
         />
-        <div className="absolute top-2 right-2 bg-blue-500 text-white text-xs font-semibold px-2 py-1 rounded">
+        <div className="absolute top-2 right-2 text-white text-xs font-semibold px-2 py-1 rounded" style={{backgroundColor: '#111926'}}>
           {campaign.category}
         </div>
       </div>
@@ -38,8 +38,8 @@ const CampaignCard: React.FC<CampaignCardProps> = ({ campaign }) => {
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
             <div 
-              className="bg-blue-500 h-2 rounded-full transition-all duration-500 ease-in-out" 
-              style={{ width: `${progressPercentage}%` }}
+              className="h-2 rounded-full transition-all duration-500 ease-in-out" 
+              style={{ width: `${progressPercentage}%`, backgroundColor: '#111926' }}
             ></div>
           </div>
         </div>
@@ -55,7 +55,10 @@ const CampaignCard: React.FC<CampaignCardProps> = ({ campaign }) => {
           </div>
           <Link 
             to={`/campaign/${campaign.id}`}
-            className="px-4 py-2 bg-blue-500 text-white text-sm font-medium rounded hover:bg-blue-600 transition-colors duration-300"
+            className="px-4 py-2 text-white text-sm font-medium rounded transition-colors duration-300"
+            style={{backgroundColor: '#111926'}}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0f1419'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#111926'}
           >
             View Campaign
           </Link>

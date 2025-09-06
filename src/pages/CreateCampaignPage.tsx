@@ -5,7 +5,7 @@ import { AlertCircle, CheckCircle } from 'lucide-react';
 import { MockCampaign } from '../types/Campaign';
 import { ethers, parseEther,BrowserProvider } from 'ethers';
 import {createWalletClient,createPublicClient,http,custom,formatEther} from 'viem'
-import {sepolia} from 'viem/chains'
+import {sepolia, sonicTestnet} from 'viem/chains'
 import { walletConnect } from 'wagmi/connectors';
 import {FundedABI,FundedAddress} from "../contexts/Fundedconfig"
 import { useWallet } from '../contexts/WalletContext';
@@ -13,12 +13,12 @@ import { useWallet } from '../contexts/WalletContext';
 
 
 const WalletClient = createWalletClient({
-  chain:sepolia,
+  chain:sonicTestnet,
   transport: custom(window.ethereum)
 })
 
 const PublicClient = createPublicClient({
-  chain:sepolia,
+  chain:sonicTestnet,
   transport: http()
 })
 
@@ -196,11 +196,24 @@ const CreateCampaignPage: React.FC = () => {
                 id="title"
                 value={formData.title}
                 onChange={handleChange}
-                className={`mt-1 block w-full rounded-md shadow-sm sm:text-sm ${
+                className={`mt-1 block w-full rounded-md shadow-sm sm:text-sm focus:outline-none focus:ring-2 focus:ring-opacity-50 ${
                   errors.title 
                     ? 'border-red-300 focus:ring-red-500 focus:border-red-500' 
-                    : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
+                    : 'border-gray-300'
                 }`}
+                style={!errors.title ? {'--tw-ring-color': '#111926'} as React.CSSProperties : {}}
+                onFocus={(e) => {
+                  if (!errors.title) {
+                    e.currentTarget.style.borderColor = '#111926';
+                    e.currentTarget.style.boxShadow = `0 0 0 2px rgba(17, 25, 38, 0.2)`;
+                  }
+                }}
+                onBlur={(e) => {
+                  if (!errors.title) {
+                    e.currentTarget.style.borderColor = 'rgb(209 213 219)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }
+                }}
                 placeholder="Enter a compelling title"
               />
               {errors.title && (
@@ -218,11 +231,24 @@ const CreateCampaignPage: React.FC = () => {
                 id="description"
                 value={formData.description}
                 onChange={handleChange}
-                className={`mt-1 block w-full rounded-md shadow-sm sm:text-sm ${
+                className={`mt-1 block w-full rounded-md shadow-sm sm:text-sm focus:outline-none focus:ring-2 focus:ring-opacity-50 ${
                   errors.description 
                     ? 'border-red-300 focus:ring-red-500 focus:border-red-500' 
-                    : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
+                    : 'border-gray-300'
                 }`}
+                style={!errors.description ? {'--tw-ring-color': '#111926'} as React.CSSProperties : {}}
+                onFocus={(e) => {
+                  if (!errors.description) {
+                    e.currentTarget.style.borderColor = '#111926';
+                    e.currentTarget.style.boxShadow = `0 0 0 2px rgba(17, 25, 38, 0.2)`;
+                  }
+                }}
+                onBlur={(e) => {
+                  if (!errors.description) {
+                    e.currentTarget.style.borderColor = 'rgb(209 213 219)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }
+                }}
                 placeholder="A brief summary of your campaign (100-150 characters)"
                 maxLength={150}
               />
@@ -241,11 +267,24 @@ const CreateCampaignPage: React.FC = () => {
                 rows={6}
                 value={formData.longDescription}
                 onChange={handleChange}
-                className={`mt-1 block w-full rounded-md shadow-sm sm:text-sm ${
+                className={`mt-1 block w-full rounded-md shadow-sm sm:text-sm focus:outline-none focus:ring-2 focus:ring-opacity-50 ${
                   errors.longDescription 
                     ? 'border-red-300 focus:ring-red-500 focus:border-red-500' 
-                    : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
+                    : 'border-gray-300'
                 }`}
+                style={!errors.longDescription ? {'--tw-ring-color': '#111926'} as React.CSSProperties : {}}
+                onFocus={(e) => {
+                  if (!errors.longDescription) {
+                    e.currentTarget.style.borderColor = '#111926';
+                    e.currentTarget.style.boxShadow = `0 0 0 2px rgba(17, 25, 38, 0.2)`;
+                  }
+                }}
+                onBlur={(e) => {
+                  if (!errors.longDescription) {
+                    e.currentTarget.style.borderColor = 'rgb(209 213 219)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }
+                }}
                 placeholder="Explain your campaign in detail. What are you trying to achieve? How will the funds be used?"
               />
               {errors.longDescription && (
@@ -266,11 +305,24 @@ const CreateCampaignPage: React.FC = () => {
                 id="creatorName"
                 value={formData.creatorName}
                 onChange={handleChange}
-                className={`mt-1 block w-full rounded-md shadow-sm sm:text-sm ${
+                className={`mt-1 block w-full rounded-md shadow-sm sm:text-sm focus:outline-none focus:ring-2 focus:ring-opacity-50 ${
                   errors.creatorName 
                     ? 'border-red-300 focus:ring-red-500 focus:border-red-500' 
-                    : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
+                    : 'border-gray-300'
                 }`}
+                style={!errors.creatorName ? {'--tw-ring-color': '#111926'} as React.CSSProperties : {}}
+                onFocus={(e) => {
+                  if (!errors.creatorName) {
+                    e.currentTarget.style.borderColor = '#111926';
+                    e.currentTarget.style.boxShadow = `0 0 0 2px rgba(17, 25, 38, 0.2)`;
+                  }
+                }}
+                onBlur={(e) => {
+                  if (!errors.creatorName) {
+                    e.currentTarget.style.borderColor = 'rgb(209 213 219)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }
+                }}
                 placeholder="Your name or organization name"
               />
               {errors.creatorName && (
@@ -288,11 +340,24 @@ const CreateCampaignPage: React.FC = () => {
                   id="category"
                   value={formData.category}
                   onChange={handleChange}
-                  className={`mt-1 block w-full rounded-md shadow-sm sm:text-sm ${
+                  className={`mt-1 block w-full rounded-md shadow-sm sm:text-sm focus:outline-none focus:ring-2 focus:ring-opacity-50 ${
                     errors.category 
                       ? 'border-red-300 focus:ring-red-500 focus:border-red-500' 
-                      : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
+                      : 'border-gray-300'
                   }`}
+                  style={!errors.category ? {'--tw-ring-color': '#111926'} as React.CSSProperties : {}}
+                  onFocus={(e) => {
+                    if (!errors.category) {
+                      e.currentTarget.style.borderColor = '#111926';
+                      e.currentTarget.style.boxShadow = `0 0 0 2px rgba(17, 25, 38, 0.2)`;
+                    }
+                  }}
+                  onBlur={(e) => {
+                    if (!errors.category) {
+                      e.currentTarget.style.borderColor = 'rgb(209 213 219)';
+                      e.currentTarget.style.boxShadow = 'none';
+                    }
+                  }}
                 >
                   <option value="">Select a category</option>
                   {CATEGORIES.map(category => (
@@ -315,11 +380,24 @@ const CreateCampaignPage: React.FC = () => {
                     id="goalAmount"
                     value={formData.goalAmount}
                     onChange={handleChange}
-                    className={`pl-2 block w-full rounded-md shadow-sm sm:text-sm ${
+                    className={`pl-2 block w-full rounded-md shadow-sm sm:text-sm focus:outline-none focus:ring-2 focus:ring-opacity-50 ${
                       errors.goalAmount 
                         ? 'border-red-300 focus:ring-red-500 focus:border-red-500' 
-                        : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
+                        : 'border-gray-300'
                     }`}
+                    style={!errors.goalAmount ? {'--tw-ring-color': '#111926'} as React.CSSProperties : {}}
+                    onFocus={(e) => {
+                      if (!errors.goalAmount) {
+                        e.currentTarget.style.borderColor = '#111926';
+                        e.currentTarget.style.boxShadow = `0 0 0 2px rgba(17, 25, 38, 0.2)`;
+                      }
+                    }}
+                    onBlur={(e) => {
+                      if (!errors.goalAmount) {
+                        e.currentTarget.style.borderColor = 'rgb(209 213 219)';
+                        e.currentTarget.style.boxShadow = 'none';
+                      }
+                    }}
                     placeholder="0.5"
                     min="0.01"
                     step="0.01"
@@ -345,11 +423,24 @@ const CreateCampaignPage: React.FC = () => {
                   id="deadline"
                   value={formData.deadline}
                   onChange={handleChange}
-                  className={`mt-1 block w-full rounded-md shadow-sm sm:text-sm ${
+                  className={`mt-1 block w-full rounded-md shadow-sm sm:text-sm focus:outline-none focus:ring-2 focus:ring-opacity-50 ${
                     errors.deadline 
                       ? 'border-red-300 focus:ring-red-500 focus:border-red-500' 
-                      : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
+                      : 'border-gray-300'
                   }`}
+                  style={!errors.deadline ? {'--tw-ring-color': '#111926'} as React.CSSProperties : {}}
+                  onFocus={(e) => {
+                    if (!errors.deadline) {
+                      e.currentTarget.style.borderColor = '#111926';
+                      e.currentTarget.style.boxShadow = `0 0 0 2px rgba(17, 25, 38, 0.2)`;
+                    }
+                  }}
+                  onBlur={(e) => {
+                    if (!errors.deadline) {
+                      e.currentTarget.style.borderColor = 'rgb(209 213 219)';
+                      e.currentTarget.style.boxShadow = 'none';
+                    }
+                  }}
                   min={new Date().toISOString().split('T')[0]}
                 />
                 {errors.deadline && (
@@ -367,11 +458,24 @@ const CreateCampaignPage: React.FC = () => {
                   id="imageUrl"
                   value={formData.imageUrl}
                   onChange={handleChange}
-                  className={`mt-1 block w-full pl-3 rounded-md shadow-sm sm:text-sm ${
+                  className={`mt-1 block w-full pl-3 rounded-md shadow-sm sm:text-sm focus:outline-none focus:ring-2 focus:ring-opacity-50 ${
                     errors.imageUrl 
                       ? 'border-red-300 focus:ring-red-500 focus:border-red-500' 
-                      : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
+                      : 'border-gray-300'
                   }`}
+                  style={!errors.imageUrl ? {'--tw-ring-color': '#111926'} as React.CSSProperties : {}}
+                  onFocus={(e) => {
+                    if (!errors.imageUrl) {
+                      e.currentTarget.style.borderColor = '#111926';
+                      e.currentTarget.style.boxShadow = `0 0 0 2px rgba(17, 25, 38, 0.2)`;
+                    }
+                  }}
+                  onBlur={(e) => {
+                    if (!errors.imageUrl) {
+                      e.currentTarget.style.borderColor = 'rgb(209 213 219)';
+                      e.currentTarget.style.boxShadow = 'none';
+                    }
+                  }}
                   placeholder="https://example.com/image.jpg"
                 />
                 {errors.imageUrl && (
@@ -383,14 +487,14 @@ const CreateCampaignPage: React.FC = () => {
               </div>
             </div>
             
-            <div className="bg-blue-50 p-4 rounded-md">
+            <div className="p-4 rounded-md" style={{backgroundColor: 'rgba(17, 25, 38, 0.05)'}}>
               <div className="flex">
                 <div className="flex-shrink-0">
-                  <AlertCircle className="h-5 w-5 text-blue-400" />
+                  <AlertCircle className="h-5 w-5" style={{color: '#111926'}} />
                 </div>
                 <div className="ml-3">
-                  <h3 className="text-sm font-medium text-blue-800">Important Information</h3>
-                  <div className="mt-2 text-sm text-blue-700">
+                  <h3 className="text-sm font-medium" style={{color: '#111926'}}>Important Information</h3>
+                  <div className="mt-2 text-sm" style={{color: '#374151'}}>
                     <p>
                       By creating this campaign, you agree that:
                     </p>
@@ -408,9 +512,19 @@ const CreateCampaignPage: React.FC = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
+                className={`px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 ${
                   isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
                 }`}
+                style={{
+                  backgroundColor: '#111926',
+                  '--tw-ring-color': '#111926'
+                } as React.CSSProperties}
+                onMouseEnter={(e) => {
+                  if (!isSubmitting) e.currentTarget.style.backgroundColor = '#0f1419';
+                }}
+                onMouseLeave={(e) => {
+                  if (!isSubmitting) e.currentTarget.style.backgroundColor = '#111926';
+                }}
               >
                 {isSubmitting ? (
                   <>

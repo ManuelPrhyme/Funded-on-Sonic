@@ -31,26 +31,30 @@ const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+      <section className="text-white" style={{background: 'linear-gradient(to right, #111926, #1a2332)'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
                 Fund Your Dreams, Change The World
               </h1>
-              <p className="text-lg md:text-xl mb-8 text-blue-100">
+              <p className="text-lg md:text-xl mb-8" style={{color: 'rgba(255, 255, 255, 0.8)'}}>
                 Funded is a decentralized crowdfunding platform that empowers creators and supports innovation through transparent, secure fundraising.
               </p>
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                 <Link 
                   to="/create" 
-                  className="inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium bg-white text-blue-600 hover:bg-blue-50"
+                  className="inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium bg-white hover:bg-gray-50"
+              style={{borderBottomColor: '#111926', color: '#111926'}}
                 >
                   Start a Campaign
                 </Link>
                 <a 
                   href="#featured" 
-                  className="inline-flex items-center justify-center px-6 py-3 border border-white rounded-md text-base font-medium text-white hover:bg-blue-700"
+                  className="inline-flex items-center justify-center px-6 py-3 border border-white rounded-md text-base font-medium text-white"
+                  style={{'--hover-bg': 'rgba(17, 25, 38, 0.1)'} as React.CSSProperties}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(17, 25, 38, 0.1)'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                 >
                   Explore Campaigns
                 </a>
@@ -63,7 +67,7 @@ const HomePage: React.FC = () => {
                 className="rounded-lg shadow-xl"
               />
               <div className="absolute -bottom-6 -left-6 bg-white rounded-lg shadow-lg p-4">
-                <p className="text-blue-600 font-bold text-xl">{totalRaised.toFixed(3)} S</p>
+                <p className="font-bold text-xl" style={{color: '#111926'}}>{totalRaised.toFixed(3)} S</p>
                 <p className="text-gray-600">Total Funds Raised</p>
               </div>
             </div>
@@ -75,9 +79,9 @@ const HomePage: React.FC = () => {
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-blue-50 rounded-lg p-6 flex items-center">
-              <div className="bg-blue-100 p-4 rounded-full mr-4">
-                <DollarSign className="h-8 w-8 text-blue-600" />
+            <div className="rounded-lg p-6 flex items-center" style={{backgroundColor: 'rgba(17, 25, 38, 0.05)'}}>
+              <div className="p-4 rounded-full mr-4" style={{backgroundColor: 'rgba(17, 25, 38, 0.1)'}}>
+                <DollarSign className="h-8 w-8" style={{color: '#111926'}} />
               </div>
               <div>
                 <p className="text-2xl font-bold text-gray-900">{totalRaised.toFixed(3)} S</p>
@@ -85,9 +89,9 @@ const HomePage: React.FC = () => {
               </div>
             </div>
             
-            <div className="bg-blue-50 rounded-lg p-6 flex items-center">
-              <div className="bg-blue-100 p-4 rounded-full mr-4">
-                <Zap className="h-8 w-8 text-blue-600" />
+            <div className="rounded-lg p-6 flex items-center" style={{backgroundColor: 'rgba(17, 25, 38, 0.05)'}}>
+              <div className="p-4 rounded-full mr-4" style={{backgroundColor: 'rgba(17, 25, 38, 0.1)'}}>
+                <Zap className="h-8 w-8" style={{color: '#111926'}} />
               </div>
               <div>
                 <p className="text-2xl font-bold text-gray-900">{totalCampaigns}</p>
@@ -95,9 +99,9 @@ const HomePage: React.FC = () => {
               </div>
             </div>
             
-            <div className="bg-blue-50 rounded-lg p-6 flex items-center">
-              <div className="bg-blue-100 p-4 rounded-full mr-4">
-                <Users className="h-8 w-8 text-blue-600" />
+            <div className="rounded-lg p-6 flex items-center" style={{backgroundColor: 'rgba(17, 25, 38, 0.05)'}}>
+              <div className="p-4 rounded-full mr-4" style={{backgroundColor: 'rgba(17, 25, 38, 0.1)'}}>
+                <Users className="h-8 w-8" style={{color: '#111926'}} />
               </div>
               <div>
                 <p className="text-2xl font-bold text-gray-900">{totalContributors}</p>
@@ -120,7 +124,7 @@ const HomePage: React.FC = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white p-6 rounded-lg shadow-md text-center">
-              <div className="inline-flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white mb-4">
+              <div className="inline-flex items-center justify-center h-12 w-12 rounded-md text-white mb-4" style={{backgroundColor: '#111926'}}>
                 1
               </div>
               <h3 className="text-xl font-medium text-gray-900 mb-2">Create a Campaign</h3>
@@ -130,7 +134,7 @@ const HomePage: React.FC = () => {
             </div>
             
             <div className="bg-white p-6 rounded-lg shadow-md text-center">
-              <div className="inline-flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white mb-4">
+              <div className="inline-flex items-center justify-center h-12 w-12 rounded-md text-white mb-4" style={{backgroundColor: '#111926'}}>
                 2
               </div>
               <h3 className="text-xl font-medium text-gray-900 mb-2">Get Funded</h3>
@@ -140,7 +144,7 @@ const HomePage: React.FC = () => {
             </div>
             
             <div className="bg-white p-6 rounded-lg shadow-md text-center">
-              <div className="inline-flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white mb-4">
+              <div className="inline-flex items-center justify-center h-12 w-12 rounded-md text-white mb-4" style={{backgroundColor: '#111926'}}>
                 3
               </div>
               <h3 className="text-xl font-medium text-gray-900 mb-2">Receive Funds</h3>
@@ -153,7 +157,10 @@ const HomePage: React.FC = () => {
           <div className="mt-12 text-center">
             <Link
               to="/create"
-              className="inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium bg-blue-600 text-white hover:bg-blue-700"
+              className="inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white"
+              style={{backgroundColor: '#111926', color:"white"}}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0f1419'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#111926'}
             >
               Start Your Campaign
             </Link>
@@ -173,7 +180,7 @@ const HomePage: React.FC = () => {
           
           {loading ? (
             <div className="flex justify-center items-center py-12">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2" style={{borderBottomColor: '#111926'}}></div>
               <span className="ml-3 text-gray-600">Loading campaigns...</span>
             </div>
           ) : error ? (
@@ -181,7 +188,10 @@ const HomePage: React.FC = () => {
               <p className="text-red-600 mb-4">{error}</p>
               <button 
                 onClick={() => window.location.reload()}
-                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              className="px-4 py-2 text-white rounded"
+              style={{backgroundColor: '#111926'}}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0f1419'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#111926'}
               >
                 Try Again
               </button>
@@ -193,7 +203,10 @@ const HomePage: React.FC = () => {
           <div className="mt-12 text-center">
             <Link
               to="/campaigns"
-              className="inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium bg-blue-600 text-white hover:bg-blue-700"
+              className="inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white"
+              style={{backgroundColor: '#111926'}}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0f1419'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#111926'}
             >
               View All Campaigns
             </Link>
@@ -202,52 +215,52 @@ const HomePage: React.FC = () => {
       </section>
       
       {/* Why Choose Us Section */}
-      <section className="py-16 bg-blue-600 text-white">
+      <section className="py-16 text-white" style={{backgroundColor: '#111926'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold">Why Choose Funded</h2>
-            <p className="mt-4 text-lg text-blue-100 max-w-3xl mx-auto">
+            <p className="mt-4 text-lg max-w-3xl mx-auto" style={{color: 'rgba(255, 255, 255, 0.8)'}}>
               Our platform offers unique advantages through blockchain technology
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-blue-500 mb-4">
+              <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full mb-4" style={{backgroundColor: '#0f1419'}}>
                 <Shield className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-medium mb-2">Secure & Transparent</h3>
-              <p className="text-blue-100">
+              <p style={{color: 'rgba(255, 255, 255, 0.8)'}}>
                 All transactions are recorded on the blockchain for complete transparency.
               </p>
             </div>
             
             <div className="text-center">
-              <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-blue-500 mb-4">
-                {/* <DollarSign className="h-8 w-8 text-white" /> */}
+              <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full mb-4" style={{backgroundColor: '#0f1419'}}>
+                <DollarSign className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-medium mb-2">Lower Fees</h3>
-              <p className="text-blue-100">
+              <p style={{color: 'rgba(255, 255, 255, 0.8)'}}>
                 Only 5% platform fee, compared to 8-10% on traditional platforms.
               </p>
             </div>
             
             <div className="text-center">
-              <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-blue-500 mb-4">
+              <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full mb-4" style={{backgroundColor: '#0f1419'}}>
                 <Zap className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-medium mb-2">Fast Disbursement</h3>
-              <p className="text-blue-100">
+              <p style={{color: 'rgba(255, 255, 255, 0.8)'}}>
                 Receive funds automatically when your campaign reaches its goal.
               </p>
             </div>
             
             <div className="text-center">
-              <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-blue-500 mb-4">
+              <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full mb-4" style={{backgroundColor: '#0f1419'}}>
                 <Users className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-medium mb-2">Global Community</h3>
-              <p className="text-blue-100">
+              <p style={{color: 'rgba(255, 255, 255, 0.8)'}}>
                 Access contributors from around the world without currency limitations.
               </p>
             </div>
@@ -267,23 +280,26 @@ const HomePage: React.FC = () => {
                 </p>
                 <Link
                   to="/create"
-                  className="inline-flex items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium bg-blue-600 text-white hover:bg-blue-700"
+                  className="inline-flex items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white"
+                  style={{backgroundColor: '#111926'}}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0f1419'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#111926'}
                 >
                   Create Your Campaign
                 </Link>
               </div>
-              <div className="bg-gradient-to-r from-blue-500 to-indigo-600 p-8 md:p-12 text-white">
+              <div className="p-8 md:p-12 text-white" style={{background: 'linear-gradient(to right, #111926, #1a2332)'}}>
                 <h3 className="text-2xl font-bold mb-4">Successful Funding</h3>
                 <div className="space-y-4">
-                  <div className="bg-blue-600 bg-opacity-50 p-4 rounded-lg">
+                  <div className="p-4 rounded-lg" style={{backgroundColor: 'rgba(17, 25, 38, 0.5)'}}>
                     <p className="font-bold">73%</p>
                     <p>of campaigns reach their funding goal</p>
                   </div>
-                  <div className="bg-blue-600 bg-opacity-50 p-4 rounded-lg">
+                  <div className="p-4 rounded-lg" style={{backgroundColor: 'rgba(17, 25, 38, 0.5)'}}>
                     <p className="font-bold">$10K+</p>
                     <p>average amount raised per successful campaign</p>
                   </div>
-                  <div className="bg-blue-600 bg-opacity-50 p-4 rounded-lg">
+                  <div className="p-4 rounded-lg" style={{backgroundColor: 'rgba(17, 25, 38, 0.5)'}}>
                     <p className="font-bold">48 hours</p>
                     <p>average time to receive first contribution</p>
                   </div>

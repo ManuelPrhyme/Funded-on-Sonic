@@ -69,7 +69,16 @@ const CampaignGrid: React.FC<CampaignGridProps> = ({
                 placeholder="Search campaigns..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-opacity-50"
+                style={{'--tw-ring-color': '#0061FF'} as React.CSSProperties}
+                onFocus={(e) => {
+                  e.currentTarget.style.borderColor = '#0061FF';
+                  e.currentTarget.style.boxShadow = `0 0 0 2px rgba(0, 97, 255, 0.2)`;
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.borderColor = 'rgb(209 213 219)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             </div>
@@ -79,7 +88,16 @@ const CampaignGrid: React.FC<CampaignGridProps> = ({
                 <select
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="appearance-none pl-10 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                  className="appearance-none pl-10 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-opacity-50 bg-white"
+                  style={{'--tw-ring-color': '#0061FF'} as React.CSSProperties}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = '#0061FF';
+                    e.currentTarget.style.boxShadow = `0 0 0 2px rgba(0, 97, 255, 0.2)`;
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = 'rgb(209 213 219)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }}
                 >
                   <option value="">All Categories</option>
                   {categories.map(category => (
@@ -92,7 +110,16 @@ const CampaignGrid: React.FC<CampaignGridProps> = ({
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-opacity-50 bg-white"
+                style={{'--tw-ring-color': '#0061FF'} as React.CSSProperties}
+                onFocus={(e) => {
+                  e.currentTarget.style.borderColor = '#0061FF';
+                  e.currentTarget.style.boxShadow = `0 0 0 2px rgba(0, 97, 255, 0.2)`;
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.borderColor = 'rgb(209 213 219)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
               >
                 <option value="newest">Newest</option>
                 <option value="funded">Most Funded %</option>
@@ -119,7 +146,10 @@ const CampaignGrid: React.FC<CampaignGridProps> = ({
               setSelectedCategory('');
               setSortBy('newest');
             }}
-            className="mt-4 px-4 py-2 bg-blue-500 text-white font-medium rounded hover:bg-blue-600"
+            className="mt-4 px-4 py-2 text-white font-medium rounded"
+            style={{backgroundColor: '#0061FF'}}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0052E6'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0061FF'}
           >
             Clear Filters
           </button>

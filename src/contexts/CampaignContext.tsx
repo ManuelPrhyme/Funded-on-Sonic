@@ -1,18 +1,37 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { Campaign, MockCampaign } from '../types/Campaign';
-import {createWalletClient,createPublicClient,http,custom, parseEther, formatEther} from 'viem'
-import { sepolia } from 'viem/chains';
+import {createWalletClient,createPublicClient,http,custom, parseEther, formatEther, defineChain} from 'viem'
+import { sepolia, sonicTestnet } from 'viem/chains';
 import { FundedABI, FundedAddress } from './Fundedconfig';
 import {useWallet} from './WalletContext';
 
+export const sonicTest = defineChain({
+  id: 14601,
+  name: 'Sonic Testnet',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'S Token',
+    symbol: 'S',
+  },
+  rpcUrls: {
+    default: { http: ['https://rpc.testnet.soniclabs.com'] },
+  },
+  blockExplorerUrls: {
+    default: {
+      name: 'SonicScan',
+      url: 'https://testnet.sonicscan.org'
+    },
+  },
+})
+
 
 const FundedPublicClient = createPublicClient({
-  chain: sepolia,
+  chain: sonicTest,
   transport:http()
 })
 
 const FundedWalletClient = createWalletClient({
-  chain:sepolia,
+  chain:sonicTest,
   transport: custom(window.ethereum)
 })
 
@@ -172,7 +191,7 @@ export const CampaignProvider: React.FC<{ children: React.ReactNode }> = ({ chil
           campaign.category
         ],
         account: activeAccount as `0x${string}`,
-        value: parseEther("0.005") // Registration fee as specified in contract
+        value: parseEther("10") 
       });
       
       console.log("Campaign registration transaction hash:", hash);

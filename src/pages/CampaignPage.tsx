@@ -60,7 +60,7 @@ const CampaignPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="mb-6">
-        <Link to="/" className="text-blue-600 hover:text-blue-800">
+        <Link to="/" className="hover:text-gray-800" style={{color: '#111926'}} onMouseEnter={(e) => e.currentTarget.style.color = '#0f1419'} onMouseLeave={(e) => e.currentTarget.style.color = '#111926'}>
           &larr; Back to campaigns
         </Link>
       </div>
@@ -77,7 +77,7 @@ const CampaignPage: React.FC = () => {
           
           <div className="md:w-1/3 p-6">
             <div className="flex items-center justify-between">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium" style={{backgroundColor: 'rgba(17, 25, 38, 0.1)', color: '#111926'}}>
                 {campaign.category}
               </span>
               
@@ -111,8 +111,8 @@ const CampaignPage: React.FC = () => {
               
               <div className="mt-3 w-full bg-gray-200 rounded-full h-2.5">
                 <div 
-                  className="bg-blue-600 h-2.5 rounded-full" 
-                  style={{ width: `${progressPercentage}%` }}
+                  className="h-2.5 rounded-full" 
+                  style={{ width: `${progressPercentage}%`, backgroundColor: '#111926' }}
                 ></div>
               </div>
               

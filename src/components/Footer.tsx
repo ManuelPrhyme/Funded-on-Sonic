@@ -65,7 +65,7 @@ const Footer: React.FC = () => {
               />
               <button 
                 type="button" 
-                className="bg-blue-500 px-4 py-2 border border-transparent rounded-r-md font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm"
+                className="bg-[#111926] px-4 py-2 border border-white rounded-r-md font-medium text-white hover:bg-white hover:border-[#111926] hover:text-[#111926] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm"
               >
                 Subscribe
               </button>

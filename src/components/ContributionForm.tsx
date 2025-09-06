@@ -13,7 +13,7 @@ const ContributionForm: React.FC<ContributionFormProps> = ({ campaignId, onSucce
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState('');
 
-  const { account: activeAccount, connectWallet, isConnecting, chainId, switchToSepolia } = useWallet();
+  const { account: activeAccount, connectWallet, isConnecting, chainId, switchToSonicTest } = useWallet();
   const { contributeToCampaign } = useCampaigns();
   
   const handleSubmit = async (e: React.FormEvent) => {
@@ -27,8 +27,8 @@ const ContributionForm: React.FC<ContributionFormProps> = ({ campaignId, onSucce
     }
     
     // Check if on correct network (Sepolia)
-    if (chainId !== 11155111) { // Sepolia chain ID
-      setError('Please switch to Sepolia testnet');
+    if (chainId !== 14601) { // Sepolia chain ID
+      setError('Please switch to Sonic Testnet');
       return;
     }
     
@@ -75,7 +75,14 @@ const ContributionForm: React.FC<ContributionFormProps> = ({ campaignId, onSucce
           <button
             onClick={connectWallet}
             disabled={isConnecting}
-            className="inline-flex items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="inline-flex items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white disabled:opacity-50 disabled:cursor-not-allowed"
+            style={{backgroundColor: '#111926'}}
+            onMouseEnter={(e) => {
+              if (!e.currentTarget.disabled) e.currentTarget.style.backgroundColor = '#0f1419';
+            }}
+            onMouseLeave={(e) => {
+              if (!e.currentTarget.disabled) e.currentTarget.style.backgroundColor = '#111926';
+            }}
           >
             {isConnecting ? 'Connecting...' : 'Connect Wallet'}
           </button>
@@ -85,17 +92,17 @@ const ContributionForm: React.FC<ContributionFormProps> = ({ campaignId, onSucce
   }
   
   // If on wrong network, show switch network interface
-  if (chainId && chainId !== 11155111) { // Sepolia chain ID
+  if (chainId && chainId !== 14601) { // Sepolia chain ID
     return (
       <div className="bg-white rounded-lg p-6 shadow-md">
         <h3 className="text-xl font-semibold mb-4">Switch Network</h3>
         <div className="text-center py-8">
-          <p className="text-gray-600 mb-4">Please switch to Sepolia testnet to contribute</p>
+          <p className="text-gray-600 mb-4">Please switch to Sonic testnet to contribute</p>
           <button
-            onClick={switchToSepolia}
+            onClick={switchToSonicTest}
             className="inline-flex items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-orange-600 hover:bg-orange-700"
           >
-            Switch to Sepolia
+            Switch to Sonic Testnet
           </button>
         </div>
       </div>
@@ -132,7 +139,16 @@ const ContributionForm: React.FC<ContributionFormProps> = ({ campaignId, onSucce
                   step="0.001"
                   min="0.001"
                   disabled={isProcessing}
-                  className="focus:ring-blue-500 focus:border-blue-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
+                  className="block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-opacity-50"
+                  style={{'--tw-ring-color': '#111926'} as React.CSSProperties}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = '#111926';
+                    e.currentTarget.style.boxShadow = `0 0 0 2px rgba(17, 25, 38, 0.2)`;
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = 'rgb(209 213 219)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }}
                   placeholder="0.001"
                   aria-describedby="amount-currency"
                   value={amount}
@@ -146,12 +162,12 @@ const ContributionForm: React.FC<ContributionFormProps> = ({ campaignId, onSucce
             </div>
           
             <div className="mb-4">
-              <div className="bg-blue-50 p-3 rounded-md">
-                <p className="text-sm text-blue-800 mb-2">
+              <div className="p-3 rounded-md" style={{backgroundColor: 'rgba(17, 25, 38, 0.05)'}}>
+                <p className="text-sm mb-2" style={{color: '#111926'}}>
                   <span className="font-medium">5% platform fee</span> will be applied to your contribution to maintain our service.
                 </p>
                 {amount && !isNaN(parseFloat(amount)) && parseFloat(amount) > 0 && (
-                  <div className="text-xs text-blue-700">
+                  <div className="text-xs" style={{color: '#374151'}}>
                     <p>Your contribution: {parseFloat(amount).toFixed(3)} S</p>
                     <p>Platform fee (5%): {(parseFloat(amount) * 0.05).toFixed(3)} S</p>
                     <p className="font-medium">Campaign receives: {(parseFloat(amount) * 0.95).toFixed(3)} S</p>
@@ -163,9 +179,19 @@ const ContributionForm: React.FC<ContributionFormProps> = ({ campaignId, onSucce
             <button
               type="submit"
               disabled={isProcessing || amount === ''}
-              className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
+              className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 ${
                 isProcessing || amount === '' ? 'opacity-70 cursor-not-allowed' : ''
               }`}
+              style={{
+                backgroundColor: '#111926',
+                '--tw-ring-color': '#111926'
+              } as React.CSSProperties}
+              onMouseEnter={(e) => {
+                if (!isProcessing && amount !== '') e.currentTarget.style.backgroundColor = '#0f1419';
+              }}
+              onMouseLeave={(e) => {
+                if (!isProcessing && amount !== '') e.currentTarget.style.backgroundColor = '#111926';
+              }}
             >
               {isProcessing ? (
                 <>

@@ -24,7 +24,10 @@ const DashboardPage: React.FC = () => {
             </p>
             <button
               onClick={connectWallet}
-              className="inline-flex items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700"
+              className="inline-flex items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white"
+              style={{backgroundColor: '#0061FF'}}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0052E6'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0061FF'}
             >
               <Wallet className="h-5 w-5 mr-2" />
               Connect Wallet
@@ -104,8 +107,8 @@ const DashboardPage: React.FC = () => {
         
         <div className="bg-white rounded-lg shadow-md p-6 mb-8">
           <div className="flex items-center mb-6">
-            <div className="h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-              <Wallet className="h-6 w-6 text-blue-600" />
+            <div className="h-12 w-12 rounded-full flex items-center justify-center mr-4" style={{backgroundColor: 'rgba(0, 97, 255, 0.1)'}}>
+              <Wallet className="h-6 w-6" style={{color: '#0061FF'}} />
             </div>
             <div>
               <p className="text-sm text-gray-500">Connected Wallet</p>
@@ -116,10 +119,10 @@ const DashboardPage: React.FC = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="bg-blue-50 rounded-lg p-4">
+            <div className="rounded-lg p-4" style={{backgroundColor: 'rgba(0, 97, 255, 0.05)'}}>
               <div className="flex items-center">
-                <div className="mr-4 p-2 bg-blue-100 rounded-md">
-                  <TrendingUp className="h-6 w-6 text-blue-600" />
+                <div className="mr-4 p-2 rounded-md" style={{backgroundColor: 'rgba(0, 97, 255, 0.1)'}}>
+                  <TrendingUp className="h-6 w-6" style={{color: '#0061FF'}} />
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Total Raised</p>
@@ -175,7 +178,10 @@ const DashboardPage: React.FC = () => {
           </div>
           <Link 
             to="/create" 
-            className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700"
+            className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white"
+            style={{backgroundColor: '#0061FF'}}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0052E6'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0061FF'}
           >
             <PlusCircle className="h-5 w-5 mr-2" />
             Create New Campaign
@@ -185,7 +191,7 @@ const DashboardPage: React.FC = () => {
         {loading ? (
           <div className="bg-white rounded-lg shadow-md p-8">
             <div className="flex justify-center items-center py-12">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2" style={{borderBottomColor: '#0061FF'}}></div>
               <span className="ml-3 text-gray-600">Loading your campaigns...</span>
             </div>
           </div>
@@ -208,7 +214,10 @@ const DashboardPage: React.FC = () => {
             <div className="mt-6">
               <Link 
                 to="/create" 
-                className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700"
+                className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white"
+                style={{backgroundColor: '#0061FF'}}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0052E6'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0061FF'}
               >
                 Create Your First Campaign
               </Link>
