@@ -3,7 +3,7 @@ import { useCampaigns } from '../contexts/CampaignContext';
 import CampaignGrid from '../components/CampaignGrid';
 
 const CampaignsPage: React.FC = () => {
-  const { campaigns, loading, error, refreshCampaigns } = useCampaigns();
+  const { publicCampaigns, loading, error, refreshCampaigns } = useCampaigns();
 
   if (loading) {
     return (
@@ -46,7 +46,7 @@ const CampaignsPage: React.FC = () => {
           {loading ? 'Refreshing...' : 'Refresh'}
         </button>
       </div>
-      <CampaignGrid campaigns={campaigns} />
+      <CampaignGrid campaigns={publicCampaigns} />
     </div>
   );
 };

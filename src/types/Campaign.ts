@@ -17,6 +17,7 @@ export interface Campaign {
   category: string;
   contributors: Contributor[];
   createdAt: string;
+  status: number; // 0 = closed, 1 = active, etc.
 }
 
 export interface MockCampaign {

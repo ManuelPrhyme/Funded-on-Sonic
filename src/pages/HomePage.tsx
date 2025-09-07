@@ -14,18 +14,18 @@ const HomePage: React.FC = () => {
 
   },[])
 
-  const { campaigns, loading, error } = useCampaigns();
+  const { publicCampaigns, loading, error } = useCampaigns();
   
   // Get featured campaigns (for this demo, we'll just use the most funded ones)
-  const featuredCampaigns = [...campaigns]
+  const featuredCampaigns = [...publicCampaigns]
     .sort((a, b) => b.currentAmount - a.currentAmount)
     .slice(0, 3);
   
   // Calculate platform stats
-  const totalRaised = campaigns.reduce((sum, campaign) => sum + campaign.currentAmount, 0);
-  const totalCampaigns = campaigns.length;
+  const totalRaised = publicCampaigns.reduce((sum, campaign) => sum + campaign.currentAmount, 0);
+  const totalCampaigns = publicCampaigns.length;
   const totalContributors = new Set(
-    campaigns.flatMap(campaign => campaign.contributors.map(c => c.address))
+    publicCampaigns.flatMap(campaign => campaign.contributors.map(c => c.address))
   ).size;
   
   return (

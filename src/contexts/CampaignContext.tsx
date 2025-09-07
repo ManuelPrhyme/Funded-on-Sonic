@@ -39,6 +39,7 @@ const FundedWalletClient = createWalletClient({
 
 interface CampaignContextType {
   campaigns: Campaign[];
+  publicCampaigns: Campaign[]; // Only campaigns with status != 0
   loading: boolean;
   error: string | null;
   addCampaign: (campaign: MockCampaign) => void;
@@ -81,7 +82,8 @@ const convertContractDataToCampaign = (campaignData: any, contributorsData: any,
     imageUrl: campaignStruct.image,
     category: campaignStruct.catogory, 
     contributors,
-    createdAt: new Date().toISOString() 
+    createdAt: new Date().toISOString(),
+    status: campaignStruct.campaignStatus // Extract campaign status from contract
   };
   
   console.log(`Converted campaign ${campaignId}:`, {
@@ -101,6 +103,9 @@ export const CampaignProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [totalContributions, setTotalContributions] = useState<string>('');
 
   const {account: activeAccount} = useWallet();
+
+  // Filter campaigns for public display (exclude closed campaigns with status = 0)
+  const publicCampaigns = campaigns.filter(campaign => campaign.status !== 0);
 
   // Function to fetch all campaigns from the contract
   const fetchCampaignsFromContract = async (): Promise<Campaign[]> => {
@@ -122,10 +127,11 @@ export const CampaignProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       // Update total contributions
       setTotalContributions(formatEther(totalContribs));
       
-      // Fetch all active campaigns
+      // Fetch all campaigns (both active and closed)
+      const allCampaignIds = [...activeCampaignIDs, ...closedCampaignIDs];
       const fetchedCampaigns: Campaign[] = [];
       
-      for (const campaignId of activeCampaignIDs) {
+      for (const campaignId of allCampaignIds) {
         try {
           // Get campaign data and contributors
           const campaignData = await FundedPublicClient.readContract({
@@ -288,6 +294,7 @@ export const CampaignProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   return (
     <CampaignContext.Provider value={{ 
       campaigns,
+      publicCampaigns,
       loading,
       error,
       addCampaign, 
