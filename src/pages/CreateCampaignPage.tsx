@@ -398,13 +398,10 @@ const CreateCampaignPage: React.FC = () => {
                         e.currentTarget.style.boxShadow = 'none';
                       }
                     }}
-                    placeholder="0.5"
-                    min="0.01"
-                    step="0.01"
+                    placeholder="10"
+                    min="10"
+                    step="0.1"
                   />
-                   <div className="absolute inset-y-0 left-0 pl-7 flex items-center pointer-events-none">
-                    <span className="text-gray-500 sm:text-sm">S</span>
-                  </div>
                 </div>
                 {errors.goalAmount && (
                   <p className="mt-2 text-sm text-red-600">{errors.goalAmount}</p>

@@ -44,6 +44,7 @@ interface CampaignContextType {
   addCampaign: (campaign: MockCampaign) => void;
   getCampaign: (id: string) => Campaign | undefined;
   contributeToCampaign: (id: string, amount: number, address: string) => void;
+  withdrawCampaignFunds: (id: string, address: string) => void;
   userCampaigns: (address: string) => Campaign[];
   refreshCampaigns: () => Promise<void>;
 }
@@ -236,6 +237,31 @@ export const CampaignProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }
   };
 
+  const withdrawCampaignFunds = async (id: string, address: string) => {
+    try {
+      setError(null);
+      
+      // Call withdrawCampaignFunds with campaign ID and success status (true)
+      const hash = await FundedWalletClient.writeContract({
+        address: FundedAddress,
+        abi: FundedABI,
+        functionName: "withdrawCampaignFunds",
+        args: [BigInt(id), true], // Campaign ID and success status
+        account: address as `0x${string}`
+      });
+      
+      console.log("Withdrawal transaction hash:", hash);
+      
+      // Refresh campaigns after successful withdrawal (this will handle loading states)
+      await refreshCampaigns();
+      
+    } catch (err) {
+      console.error("Error withdrawing campaign funds:", err);
+      setError(`Failed to withdraw funds: ${err instanceof Error ? err.message : 'Unknown error'}`);
+      throw err;
+    }
+  };
+
   const userCampaigns = (address: string) => {
     // Normalize addresses to lowercase for comparison
     const normalizedUserAddress = address.toLowerCase();
@@ -267,6 +293,7 @@ export const CampaignProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       addCampaign, 
       getCampaign,
       contributeToCampaign,
+      withdrawCampaignFunds,
       userCampaigns,
       refreshCampaigns
     }}>

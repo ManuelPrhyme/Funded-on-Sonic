@@ -4,17 +4,25 @@ import { useWallet } from '../contexts/WalletContext';
 
 interface ContributionFormProps {
   campaignId: string;
+  campaign?: any; // Add campaign data to check if successful
   onSuccess?: () => void;
 }
 
-const ContributionForm: React.FC<ContributionFormProps> = ({ campaignId, onSuccess }) => {
+const ContributionForm: React.FC<ContributionFormProps> = ({ campaignId, campaign, onSuccess }) => {
   const [amount, setAmount] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isWithdrawing, setIsWithdrawing] = useState(false);
+  const [withdrawSuccess, setWithdrawSuccess] = useState(false);
   const [error, setError] = useState('');
 
   const { account: activeAccount, connectWallet, isConnecting, chainId, switchToSonicTest } = useWallet();
-  const { contributeToCampaign } = useCampaigns();
+  const { contributeToCampaign, withdrawCampaignFunds } = useCampaigns();
+  
+  // Check if campaign is successful (currentAmount >= goalAmount)
+  const isCampaignSuccessful = campaign && campaign.currentAmount >= campaign.goalAmount;
+  // Check if current user is the campaign creator
+  const isCreator = campaign && activeAccount && campaign.creator.toLowerCase() === activeAccount.toLowerCase();
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,6 +72,40 @@ const ContributionForm: React.FC<ContributionFormProps> = ({ campaignId, onSucce
       setIsProcessing(false);
     }
   };
+
+  const handleWithdraw = async () => {
+    setError('');
+    
+    // Check if wallet is connected
+    if (!activeAccount) {
+      setError('Please connect your wallet first');
+      return;
+    }
+    
+    // Check if on correct network
+    if (chainId !== 14601) {
+      setError('Please switch to Sonic Testnet');
+      return;
+    }
+    
+    setIsWithdrawing(true);
+    
+    try {
+      await withdrawCampaignFunds(campaignId, activeAccount);
+      setWithdrawSuccess(true);
+      
+      // Reset success message after 5 seconds and refresh data
+      setTimeout(() => {
+        setWithdrawSuccess(false);
+        if (onSuccess) onSuccess();
+      }, 5000);
+    } catch (err) {
+      console.error('Withdrawal error:', err);
+      setError('Withdrawal failed. Please try again.');
+    } finally {
+      setIsWithdrawing(false);
+    }
+  };
   
   // If no wallet connected, show connect wallet interface
   if (!activeAccount) {
@@ -92,7 +134,7 @@ const ContributionForm: React.FC<ContributionFormProps> = ({ campaignId, onSucce
   }
   
   // If on wrong network, show switch network interface
-  if (chainId && chainId !== 14601) { // Sepolia chain ID
+  if (chainId && chainId !== 14601) { 
     return (
       <div className="bg-white rounded-lg p-6 shadow-md">
         <h3 className="text-xl font-semibold mb-4">Switch Network</h3>
@@ -105,6 +147,77 @@ const ContributionForm: React.FC<ContributionFormProps> = ({ campaignId, onSucce
             Switch to Sonic Testnet
           </button>
         </div>
+      </div>
+    );
+  }
+
+  // If campaign is successful and user is the creator, show withdraw interface
+  if (isCampaignSuccessful && isCreator) {
+    return (
+      <div className="bg-white rounded-lg p-6 shadow-md">
+        <h3 className="text-xl font-semibold mb-4">Withdraw Contributions</h3>
+        
+        {withdrawSuccess ? (
+          <div className="bg-green-50 text-green-800 p-4 rounded-md mb-4">
+            <p className="font-medium">Withdrawal successful!</p>
+            <p className="text-sm mt-1">The campaign funds have been transferred to your wallet.</p>
+          </div>
+        ) : (
+          <>
+            <div className="mb-4 p-3 bg-gray-50 rounded-md">
+              <p className="text-sm text-gray-600">
+                <span className="font-medium">Connected:</span> {activeAccount.substring(0, 8)}...{activeAccount.substring(activeAccount.length - 6)}
+              </p>
+            </div>
+            
+            <div className="mb-4">
+              <div className="p-4 rounded-md bg-green-50 border border-green-200">
+                <p className="text-sm mb-2 text-green-800">
+                  <span className="font-medium">🎉 Campaign Successful!</span>
+                </p>
+                <p className="text-sm text-green-700 mb-2">
+                  Your campaign has reached its funding goal. You can now withdraw the contributed funds.
+                </p>
+                <div className="text-xs text-green-600">
+                  <p>Total raised: {campaign.currentAmount.toFixed(3)} S</p>
+                  <p>Available to withdraw: {(campaign.currentAmount * 0.95).toFixed(3)} S (after 5% platform fee)</p>
+                </div>
+              </div>
+            </div>
+            
+            {error && <p className="mb-4 text-sm text-red-600">{error}</p>}
+            
+            <button
+              onClick={handleWithdraw}
+              disabled={isWithdrawing}
+              className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                isWithdrawing ? 'opacity-70 cursor-not-allowed' : ''
+              }`}
+              style={{
+                backgroundColor: '#16a34a',
+                '--tw-ring-color': '#16a34a'
+              } as React.CSSProperties}
+              onMouseEnter={(e) => {
+                if (!isWithdrawing) e.currentTarget.style.backgroundColor = '#15803d';
+              }}
+              onMouseLeave={(e) => {
+                if (!isWithdrawing) e.currentTarget.style.backgroundColor = '#16a34a';
+              }}
+            >
+              {isWithdrawing ? (
+                <>
+                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Processing Withdrawal...
+                </>
+              ) : (
+                'Withdraw Contributions'
+              )}
+            </button>
+          </>
+        )}
       </div>
     );
   }

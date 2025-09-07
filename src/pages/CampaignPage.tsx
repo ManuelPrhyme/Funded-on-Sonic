@@ -139,26 +139,21 @@ const CampaignPage: React.FC = () => {
             </div>
             
             <div className="mt-8">
-              {!hasEnded && (
+              {(!hasEnded || isSuccessful) && (
                 <ContributionForm 
-                  campaignId={campaign.id} 
+                  campaignId={campaign.id}
+                  campaign={campaign}
                   onSuccess={handleContributionSuccess}
                 />
               )}
               
-              {hasEnded && (
-                <div className={`p-4 rounded-md ${isSuccessful ? 'bg-green-50' : 'bg-gray-50'}`}>
-                  <p className={`font-medium ${isSuccessful ? 'text-green-800' : 'text-gray-800'}`}>
-                    {isSuccessful 
-                      ? 'This campaign was successfully funded!' 
-                      : 'This campaign has ended without reaching its goal.'
-                    }
+              {hasEnded && !isSuccessful && (
+                <div className="p-4 rounded-md bg-gray-50">
+                  <p className="font-medium text-gray-800">
+                    This campaign has ended without reaching its goal.
                   </p>
                   <p className="mt-1 text-sm">
-                    {isSuccessful 
-                      ? 'Funds have been disbursed to the campaign creator.' 
-                      : 'Contributors have been refunded.'
-                    }
+                    Contributors have been refunded.
                   </p>
                 </div>
               )}
