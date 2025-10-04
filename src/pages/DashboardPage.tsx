@@ -9,7 +9,7 @@ const DashboardPage: React.FC = () => {
   const { campaigns, userCampaigns, loading, error, refreshCampaigns } = useCampaigns();
   const { account: connectedAccount, connectWallet } = useWallet();
   
-  // If no wallet connected, show connect wallet interface only
+  // If no wallet connected, show connect walle
   if (!connectedAccount) {
     return (
       <div className="min-h-screen bg-gray-50">
